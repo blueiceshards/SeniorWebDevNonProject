@@ -79,5 +79,69 @@ To solve one of these problems, use hashing, a form of cryptography used in secu
 
 To establish SSH connection, e.g. through the command: ssh root@ipaddress, you need a password first. 
 
+LESSON 8: HASHING
+
+Once a secure symmetric communication has been established, the server needs to verify if the user has the rights to access it. if it wasn't the case, then anyone can connect into the server. 
+1. D-H Key exchange
+2. Arrive at symmetric key
+3. Make sure of no funny business (through hashing)
+4. Authenticate user 
+
+Authenticate user - we want to make sure that whoever is trying to communicate with us is somebody that we want to communicate with and has the rights to communciate with us. because right now, anyone can type ssh root@ipaddress into their terminal and access Andrei's digitaloceans server. he needs to make sure that only he can access it. 
+
+there are two ways that you can authenticate into a server: (1) what most SSH users use, is a password. the user is asked to enter a username followed by a password (password is smth digitalOceans emailed Andrei when he created his server) because this password is going to be sent after the SSH connection was made and both computer and server has the symmetric key, it's encrypted and safe to send. although passwords are encrypted, it's still not recommended to use passwords for secure connections because you can use a bot and brute force a whole bunch of passwords on this server esp if passwords are bad. (2) SSH into a server to get authenticated and avoid using passwords.
+
+LESSON 9: SSH INTO A SERVER
+
+Using SSH, we are going to use something called RSA which allows us to provide or prove the identity of a person without a password. 
+
+cd ~/.ssh
+
+open . 
+
+You will realize it's just a folder like anywhere else on your computer, in his root directory, may contain: config, id_rsa, id_rsa.pub, key_backup/, known_hosts. You may not have id_rsa or id_rsa.pub, if so, you need to generate, a public and a private id_rsa key just for digitalOceans. you do this by: (remember to be in correct directory) ssh key-gen, which you should have on your computer if not you need to  download CLI. C = comment provides a new comment
+
+ssh-keygen -C "test@gmail.com"
+Generating public/private RSA key pair. 
+Enter file in which to save the key (/Users/aneagoie/.ssh/id_rsa): /Users/aneagoie/.ssh/id_rsa_digitalocean
+Enter passphrase (empty for no passphrase) Optional for additioanl security. 
+
+Then, yo've generated a public and private RSA key pair. now you have id_rsa_digitalocean and id_rsa_digitalocean.pub. remember that .pub can be shared with anyone, but the non pub which is a private key, never share it with anybody. only you should keep it on your computer and never share it if not all your encryption will be useless. we can now copy this public key and share it with the digitialocean server with the following command that copies whatever is inside of the id_rsa_digitalocean.pub:
+
+pbcopy < ~/.ssh/id_rsa_digitalocean_pub 
+
+ssh root@digitaloceanIP
+
+now, on the ubuntu digitaloceans server, we can:
+
+mkdir .ssh
+
+cd /.ssh
+
+ls
+
+(already, from digital oceans, we have authorized_keys, and known_hosts) if you dont see this on whatever server you have, you can just create the files).
+
+nano to edit text inside of authorized keys
+
+nano authorized_keys
+
+copy and paste our public key pbcopy. command X, Y, Enter.
+
+now, in authorized_keys, we have our public key. if you exit the digitaloceans SSH session and end the terminal session, you can:
+
+ssh root@digitaloceanIP
+
+if you have multiple id_rsa,
+
+cd ~/.ssh
+
+ssh-add ~/.ssh/id_rsa_digitalocean
+Identity added
+
+ssh root@digitaloceanIP
+now, we have sshed into the box and can run any commands you want, also because our public key is in authorized_keys of the digitalocean server. 
+
+set up SSH keys with github - can add different keys for different computers that you want to access your account from. 
 
 */

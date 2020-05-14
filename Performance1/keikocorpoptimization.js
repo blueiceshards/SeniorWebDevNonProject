@@ -10,6 +10,6 @@
 
 5. youmightnotneedjquery.com -> don't need to even use the massive jquery library. 
 
-6. as a developer, there are always gonna be things you can optimize. you need to focus on the big ticket items to make your website perform. 
+6. as a developer, there are always gonna be things you can optimize. you need to focus on the big ticket items, key changes, to make your website perform. 
 
 */

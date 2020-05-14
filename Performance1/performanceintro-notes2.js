@@ -120,4 +120,14 @@ LESSON 10: KEIKO CORP WEBSITE
 1. PageSpeed Insight by Google developers: you can enter a URL and it'll do some speedtests for us. Tells you optimization suggestions like eliminate render-blocking JS and CSS in above-the-fold content, leverage browser caching, and optimize images. 
 2. WebPageTest: You can select the user device as well.
 
+LESSON 11: HTTP2 
+
+HTTP 2 is a protocol update that is still compatible with HTTP, but its main goal is to improve network links, how fast it can deliver stuff from the server to the client. In our discussion fo combining text and graphics, HTTP2 may cause you to reconsider how to combine resources. For example, minification, compression, image optimization, should be continued with HTTP2, but physically combining files in the bundle may not achieve the desired effect with HTTP2 because of multiplexity. This is because server requesets are faster on HTTP2, so combining files to eliminate a request may not be actually substantially faster. the features of HTTP2 are worth exploring - binary instead of textual, fully multiplex. in theory, it can have one connection for something called parallelism, with one connection, have many files sent to it. it also allows for something called server push. 
+
+HTTP is not widely adopted yet, but things and strategies involve. 
+
+LESSON 12: SECTION SUMMARY
+
+Premature optimization is the root of all evil. if you're not shipping your product because you're trying to get it really fast but you have zero users, you're wasting your time. Everything is a tradeoff. a sernior developer is someone who can look at the big picture, analyze the pros and cons, and decide what is the best direction to take. optmize for fast loadign performance relative to the device and network capabilities of your users (ideally to less than 5 seconds) and always test your performance on mobile devices, different network connections, and experiment. 
+
 */
